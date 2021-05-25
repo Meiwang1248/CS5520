@@ -10,5 +10,6 @@
     <string name ="D_string">D</string>
     <string name ="E_string">E</string>
     <string name ="F_string">F</string>
+    <string name ="Press">Pressed: </string>
 
 </resources>
