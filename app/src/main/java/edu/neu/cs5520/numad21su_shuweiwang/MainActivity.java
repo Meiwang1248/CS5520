@@ -15,8 +15,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void introduceMyself(View view) {
-        TextView textView = findViewById(R.id.textView);
-        textView.setText(R.string.info_string);
+        TextView textView = findViewById(R.id.myInfo);
+        textView.setVisibility(View.VISIBLE);
     }
 
 

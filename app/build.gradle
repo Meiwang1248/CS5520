@@ -3,6 +3,20 @@ plugins {
 }
 
 android {
+    signingConfigs {
+        debug {
+            storeFile file('/Users/dougmac/Key_Store/FirstKey.jks')
+            storePassword 'Ilikesealions2021'
+            keyAlias 'FirstKey'
+            keyPassword 'Ilikesealions2021'
+        }
+        release {
+            storeFile file('/Users/dougmac/Key_Store/FirstKey.jks')
+            storePassword 'Ilikesealions2021'
+            keyAlias 'FirstKey'
+            keyPassword 'Ilikesealions2021'
+        }
+    }
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
 
@@ -14,6 +28,7 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        signingConfig signingConfigs.release
     }
 
     buildTypes {
