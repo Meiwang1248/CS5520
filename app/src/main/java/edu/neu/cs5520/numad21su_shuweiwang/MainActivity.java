@@ -39,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.F_button:
                 Toast.makeText(getApplicationContext(), "Pressed: F ", Toast.LENGTH_SHORT).show();
-                break;
 
         }
     }
