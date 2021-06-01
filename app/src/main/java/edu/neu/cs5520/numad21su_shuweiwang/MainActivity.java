@@ -32,6 +32,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    private void openLinkCollector() {
+        Intent intent = new Intent(this, LinkCollector.class);
+        startActivity(intent);
+    }
     public void introduceMyself(View view) {
         TextView textView = findViewById(R.id.myInfo);
         textView.setVisibility(View.VISIBLE);

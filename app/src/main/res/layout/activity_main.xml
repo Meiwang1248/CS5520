@@ -64,6 +64,18 @@
         app:layout_constraintBottom_toTopOf="@+id/textViewHelloWorld"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/links"
+        tools:ignore="UnknownId" />
+
+    <Button
+        android:id="@+id/links"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:text="@string/links"
+        app:layout_constraintBottom_toTopOf="@id/launcher2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 

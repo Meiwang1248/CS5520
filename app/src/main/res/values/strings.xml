@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">NUMAD21Su-ShuweiWang</string>
     <string name="about_string">About</string>
-    <string name="no_value_string">No Value</string>
+    <string name="links">Link Collectors</string>
     <string name="info_string">Name: Shuwei Wang\nEmail: wang.shuw@northeastern.edu
     </string>
     <string name="A_string">A</string>
