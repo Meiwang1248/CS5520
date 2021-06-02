@@ -1,6 +1,6 @@
 package edu.neu.cs5520.numad21su_shuweiwang;
 
-public class ItemCard {
+public class ItemCard implements ItemClickListener{
     private final String name;
     private final String URL;
 
@@ -20,7 +20,7 @@ public class ItemCard {
 
     @Override
     public void onItemClick(int position) {
-        // go to the website in brower
+        // go to the website in browser
     }
 
 }
