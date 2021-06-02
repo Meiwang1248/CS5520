@@ -19,7 +19,8 @@ public class ItemCard {
     }
 
     @Override
-    public void onItemCheck(int position) {
-        // open the website in a browser
+    public void onItemClick(int position) {
+        // go to the website in brower
     }
+
 }
