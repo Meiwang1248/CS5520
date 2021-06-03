@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void openLinkCollector() {
-        Intent intent = new Intent(this, LinkCollector.class);
+        Intent intent = new Intent(this, LinksCollector.class);
         startActivity(intent);
     }
     public void introduceMyself(View view) {
