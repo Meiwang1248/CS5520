@@ -11,5 +11,7 @@
     <string name="E_string">E</string>
     <string name="F_string">F</string>
     <string name="Press">Pressed: </string>
+    <string name ="item_name">Website Name</string>
+    <string name ="URL">URL</string>
 
 </resources>

@@ -84,8 +84,11 @@ public class LinksCollector extends AppCompatActivity {
     }
     
     private void addItem(int position) {
+        // dialog---get user's input
+        // create an item card object with user's info
+        // 传进去itemList.add()
         itemList.add(position, new ItemCard("Name", "Please add URL"));
-        Toast.makeText(LinksCollector.this, "Add a URL", Toast.LENGTH_SHORT).show();
+        Toast.makeText(LinksCollector.this, "Item added successfully", Toast.LENGTH_SHORT).show();
 
         reviewAdapter.notifyItemInserted(position);
     }
@@ -124,7 +127,7 @@ public class LinksCollector extends AppCompatActivity {
             if (itemList == null || itemList.size() == 0) {
                 int size = savedInstanceState.getInt(NUMBER_OF_ITEMS);
 
-                // Retrieve keys we stored in the intance
+                // Retrieve keys we stored in the instance
                 for (int i = 0; i < size; i++) {
                     String name = savedInstanceState.getString(KEY_OF_INSTANCE + i + "0");
                     String URL = savedInstanceState.getString(KEY_OF_INSTANCE + i + "1");

@@ -11,8 +11,8 @@ public class ReviewHolder extends RecyclerView.ViewHolder {
 
     public ReviewHolder (View itemView, final ItemClickListener listener) {
         super(itemView);
-//        itemIcon = itemView.findViewById(R.id.item_icon);
-//        itemName = itemView.findViewById(R.id.item_name);
+        itemURL = itemView.findViewById(R.id.URL);
+        itemName = itemView.findViewById(R.id.item_name);
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
