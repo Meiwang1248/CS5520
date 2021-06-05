@@ -1,8 +1,8 @@
 package edu.neu.cs5520.numad21su_shuweiwang;
 
 public class ItemCard implements ItemClickListener{
-    private final String name;
-    private final String URL;
+    private String name;
+    private String URL;
 
     // Constructor
     public ItemCard(String name, String URL) {
@@ -18,9 +18,18 @@ public class ItemCard implements ItemClickListener{
         return URL;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setURL(String URL) {
+        this.URL = URL;
+    }
+
     @Override
     public void onItemClick(int position) {
         // go to the website in browser
     }
+
 
 }

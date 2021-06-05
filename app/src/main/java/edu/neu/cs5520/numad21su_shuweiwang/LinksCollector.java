@@ -14,7 +14,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
-public class LinksCollector extends AppCompatActivity {
+public class LinksCollector extends AppCompatActivity implements Dialog.DialogListener  {
 
     // Creating RecyclerView, Adapter, LayoutManager
     private ArrayList<ItemCard> itemList = new ArrayList<>();
@@ -37,8 +37,10 @@ public class LinksCollector extends AppCompatActivity {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int position = 0;
-                addItem(position);
+//                int position = 0;
+                openDialog();
+                // we add item only when user clicks on OK, not Cancel
+//                addItem(position);
             }
         });
 
@@ -64,6 +66,11 @@ public class LinksCollector extends AppCompatActivity {
         itemTouchHelper.attachToRecyclerView(recyclerView);
     }
 
+    private void openDialog() {
+        Dialog dialog = new Dialog();
+        dialog.show(getSupportFragmentManager(), "first dialog");
+    }
+
     // Handling Orientation Changes on Android
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
@@ -83,15 +90,7 @@ public class LinksCollector extends AppCompatActivity {
 
     }
     
-    private void addItem(int position) {
-        // dialog---get user's input
-        // create an item card object with user's info
-        // 传进去itemList.add()
-        itemList.add(position, new ItemCard("Name", "Please add URL"));
-        Toast.makeText(LinksCollector.this, "Item added successfully", Toast.LENGTH_SHORT).show();
 
-        reviewAdapter.notifyItemInserted(position);
-    }
     private void init(Bundle savedInstanceState) {
         initialItemData(savedInstanceState);
         createRecyclerView();
@@ -139,5 +138,22 @@ public class LinksCollector extends AppCompatActivity {
             itemList.add(item1);
             itemList.add(item2);
         }
+    }
+
+    @Override
+    public void transferInfo(String webName, String URL) {
+        addItem(webName, URL);
+    }
+
+
+    public void addItem(String webName, String URL) {
+        // dialog---get user's input
+        // create an item card object with user's info
+        // 传进去itemList.add()
+        itemList.add(0, new ItemCard(webName, URL));
+        Toast.makeText(LinksCollector.this, "Item added successfully", Toast.LENGTH_SHORT).show();
+
+        // it's a must! Otherwise,  Recycler view won't be notified
+       reviewAdapter.notifyItemInserted(0);
     }
 }
