@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="2dp"
-    app:cardCornerRadius="5dp">
+    android:layout_margin="5dp"
+    app:cardCornerRadius="10dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -16,21 +16,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="7dp"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="30dp"
             android:textColor="@android:color/black"
-            android:textSize="15sp"
+            android:textSize="20sp"
             android:text="@string/item_name" />
 
         <TextView
+            android:id="@+id/URL"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/item_name"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="5dp"
-            android:id="@+id/URL"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="4dp"
+            android:textSize="20sp"
+            android:text="@string/URL"
             android:textColor="@android:color/holo_blue_dark"
-            android:textStyle="bold"
-            android:text="@string/URL" />
+            android:textStyle="bold" />
 
     </RelativeLayout>
 

@@ -44,8 +44,9 @@ public class LinksCollector extends AppCompatActivity implements Dialog.DialogLi
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                int position = 0;
-                openDialog();
+//              // we use the add function when we hit the addButton. Therefore, item is null
+                // and position is -1
+                openDialog(null, -1);
                 // we add item only when user clicks on OK, not Cancel
 //                addItem(position);
             }
@@ -73,8 +74,8 @@ public class LinksCollector extends AppCompatActivity implements Dialog.DialogLi
         itemTouchHelper.attachToRecyclerView(recyclerView);
     }
 
-    private void openDialog() {
-        Dialog dialog = new Dialog();
+    private void openDialog(ItemCard item, int position) {
+        Dialog dialog = new Dialog(item, position);
         dialog.show(getSupportFragmentManager(), "first dialog");
     }
 
@@ -119,7 +120,7 @@ public class LinksCollector extends AppCompatActivity implements Dialog.DialogLi
                 //attributions bond to the item has been changed
                 // 通过位置position，get到了itemList里面的itemcard,然后调用itemcard的onItemClick()
                 itemList.get(position).onItemClick(position);
-                openDialog();
+                openDialog(itemList.get(position), position);
                 reviewAdapter.notifyItemChanged(position);
             }
         };
@@ -154,17 +155,21 @@ public class LinksCollector extends AppCompatActivity implements Dialog.DialogLi
     }
 
     @Override
-    public void transferInfo(boolean alreadyExisted, String webName, String URL) {
-        if (alreadyExisted) {
-            editItem(webName, URL);
-        } else {
+    public void transferInfo(int position, String webName, String URL) {
+        if (position == -1) {
             addItem(webName, URL);
+        } else {
+            editItem(position, webName, URL);
         }
     }
 
-    private void editItem(String webName, String url) {
+    private void editItem(int position, String webName, String url) {
         // I need the position of the to be edited item but I don't know how to retrieve
         // itemList.set(index, new ItemCard(webName, URL);
+        itemList.get(position).setName(webName);
+        itemList.get(position).setURL(url);
+        // !!!need to notify Adapter when data is updated!!! Otherwise, the view won't show the change
+        reviewAdapter.notifyItemChanged(position);
         Toast.makeText(LinksCollector.this, "Item was edited successfully", Toast.LENGTH_SHORT).show();
     }
 

@@ -16,8 +16,14 @@ public class Dialog extends AppCompatDialogFragment {
     private EditText editTextURL;
     private DialogListener listener;
 
-    private boolean alreadyExisted = false; // if the item has existed
+    private ItemCard curItem; // this determines whether the dialog is to add or to edit
+    private int position; // if edit, we need to get the position of the given item
 
+    // Constructor
+    public Dialog(ItemCard item, int position) {
+        this.curItem = item;
+        this.position = position;
+    }
     @Override
     public AlertDialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -29,12 +35,22 @@ public class Dialog extends AppCompatDialogFragment {
         editTextWebsiteName = view.findViewById(R.id.editWebName);
         editTextURL = view.findViewById(R.id.editPassword);
 
+        String addOrEdit;
+        if (curItem == null) {
+            addOrEdit = "Add an entry";
+        } else {
+            addOrEdit ="Edit this entry";
+            // 原来的info放在dialog的输入框里
+            editTextWebsiteName.setText(curItem.getName());
+            editTextURL.setText(curItem.getURL());
+        }
+
         builder.setView(view)
-                .setTitle("Add or Edit")
+                .setTitle(addOrEdit)
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        // Cancel then do nothing
+                        // If Cancel, do nothing
                     }
                 })
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -43,8 +59,8 @@ public class Dialog extends AppCompatDialogFragment {
                         // get info from dialog's components
                         String webName = editTextWebsiteName.getText().toString();
                         String URL = editTextURL.getText().toString();
-                        listener.transferInfo(alreadyExisted, webName, URL);
-                        alreadyExisted = true;
+                        listener.transferInfo(position, webName, URL);
+
                     }
 
 
@@ -64,6 +80,6 @@ public class Dialog extends AppCompatDialogFragment {
         }
     }
     public interface DialogListener {
-        void transferInfo(boolean alreadyExisted, String webName, String URL);
+        void transferInfo(int position, String webName, String URL);
     }
 }

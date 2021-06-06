@@ -13,6 +13,6 @@
     <string name="Press">Pressed: </string>
     <string name ="item_name">Website Name</string>
     <string name ="URL">URL starting with https://</string>
-    <string name ="tips">Tap URL to go to the website or item to edit the information</string>
+    <string name ="tips">Tap URLs to websites. Tap items to edit.</string>
 
 </resources>

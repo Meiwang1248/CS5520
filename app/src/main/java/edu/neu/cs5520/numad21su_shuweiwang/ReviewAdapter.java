@@ -17,12 +17,12 @@ import java.util.ArrayList;
 public class ReviewAdapter extends RecyclerView.Adapter<ReviewHolder> {
     private final ArrayList<ItemCard> itemList;
     private ItemClickListener listener;
-    private Context context;
+    Context context;
 
     @Override
     public ReviewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_card, parent, false);
-        return new ReviewHolder(view, listener);
+        return new ReviewHolder(context, view, listener);
     }
 
     //Constructor
@@ -48,21 +48,8 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewHolder> {
 
         holder.itemName.setText(currentItem.getName());
         holder.itemURL.setText(currentItem.getURL());
-        // 点击item之后，我们需要更新
-        holder.itemURL.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final String address = currentItem.getURL();
-                // if URL is valid, go to the website. Otherwise, notify user.
-                if (URLUtil.isValidUrl(address)) {
-                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(address));
-                    context.startActivity(browserIntent);
-                } else {
-                    Toast.makeText(context, "Invalid URL, please tap the item to re-enter.", Toast.LENGTH_SHORT)
-                            .show();
-                }
-            }
-        });
+
+
     }
 
     @Override
