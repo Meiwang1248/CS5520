@@ -36,15 +36,19 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    // Assignment 3
     private void openActivity2() {
         Intent intent = new Intent(this, Activity2.class);
         startActivity(intent);
     }
 
+    // Assignment 4 Recycler View
     private void openLinkCollector() {
         Intent intent = new Intent(this, LinksCollector.class);
         startActivity(intent);
     }
+
+    // Assignment 1
     public void introduceMyself(View view) {
         TextView textView = findViewById(R.id.myInfo);
         textView.setVisibility(View.VISIBLE);
