@@ -9,11 +9,14 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialogFragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class Dialog extends AppCompatDialogFragment {
     private EditText editTextWebsiteName;
     private EditText editTextURL;
     private DialogListener listener;
+
+    private boolean alreadyExisted = false; // if the item has existed
 
     @Override
     public AlertDialog onCreateDialog(Bundle savedInstanceState) {
@@ -40,8 +43,11 @@ public class Dialog extends AppCompatDialogFragment {
                         // get info from dialog's components
                         String webName = editTextWebsiteName.getText().toString();
                         String URL = editTextURL.getText().toString();
-                        listener.transferInfo(webName, URL);
+                        listener.transferInfo(alreadyExisted, webName, URL);
+                        alreadyExisted = true;
                     }
+
+
                 });
 
 
@@ -58,6 +64,6 @@ public class Dialog extends AppCompatDialogFragment {
         }
     }
     public interface DialogListener {
-        void transferInfo(String webName, String URL);
+        void transferInfo(boolean alreadyExisted, String webName, String URL);
     }
 }

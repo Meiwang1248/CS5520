@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -24,6 +25,9 @@ public class LinksCollector extends AppCompatActivity implements Dialog.DialogLi
     private ReviewAdapter reviewAdapter;
     private RecyclerView.LayoutManager rLayoutManager;
     private FloatingActionButton addButton;
+    private TextView textView;
+    private String tips = "Tap URL to go to the website or item to edit the information";
+
 //    private static Context context;
 
     private static final String KEY_OF_INSTANCE = "KEY_OF_INSTANCE";
@@ -34,7 +38,7 @@ public class LinksCollector extends AppCompatActivity implements Dialog.DialogLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_links_collector);
 //        context = LinksCollector.this;
-
+        textView = findViewById(R.id.textView);
         init(savedInstanceState);
         addButton = findViewById(R.id.addButton);
         addButton.setOnClickListener(new View.OnClickListener() {
@@ -46,6 +50,16 @@ public class LinksCollector extends AppCompatActivity implements Dialog.DialogLi
 //                addItem(position);
             }
         });
+
+        // Handling Orientation
+        if (savedInstanceState != null) {
+            for (int i = 0; i < itemList.size(); i++) {
+                String webName = savedInstanceState.getString(KEY_OF_INSTANCE + i + "0");
+                String URL =  savedInstanceState.getString(KEY_OF_INSTANCE + i + "1");
+            }
+            tips = savedInstanceState.getString("text");
+
+        }
 
 
 
@@ -82,13 +96,15 @@ public class LinksCollector extends AppCompatActivity implements Dialog.DialogLi
         outState.putInt(NUMBER_OF_ITEMS, size);
 
         // Need to generate unique key for each item
-        // This is only a possible way to do, please find your own way to generate the key
+
         for (int i = 0; i < size; i++) {
             // put name information into instance
             outState.putString(KEY_OF_INSTANCE + i + "0", itemList.get(i).getName());
             // put URL into instance
             outState.putString(KEY_OF_INSTANCE + i + "1", itemList.get(i).getURL());
         }
+
+        outState.putString("text", tips);
         super.onSaveInstanceState(outState);
 
     }
@@ -145,8 +161,19 @@ public class LinksCollector extends AppCompatActivity implements Dialog.DialogLi
     }
 
     @Override
-    public void transferInfo(String webName, String URL) {
-        addItem(webName, URL);
+    public void transferInfo(boolean alreadyExisted, String webName, String URL) {
+        if (alreadyExisted) {
+            editItem(webName, URL);
+        } else {
+            addItem(webName, URL);
+        }
+
+    }
+
+    private void editItem(String webName, String url) {
+        // I need the position of the to be edited item but I don't know how to retrieve
+        // itemList.set(index, new ItemCard(webName, URL);
+        Toast.makeText(LinksCollector.this, "Item was edited successfully", Toast.LENGTH_SHORT).show();
     }
 
 
@@ -155,7 +182,7 @@ public class LinksCollector extends AppCompatActivity implements Dialog.DialogLi
         // create an item card object with user's info
         // 传进去itemList.add()
         itemList.add(0, new ItemCard(webName, URL));
-        Toast.makeText(LinksCollector.this, "Item added successfully", Toast.LENGTH_SHORT).show();
+        Toast.makeText(LinksCollector.this, "Item was added successfully", Toast.LENGTH_SHORT).show();
 
         // it's a must! Otherwise,  Recycler view won't be notified
        reviewAdapter.notifyItemInserted(0);

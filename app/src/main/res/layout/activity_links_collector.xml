@@ -10,6 +10,7 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
         android:text="@string/tips"
         android:textColor="@android:color/black"
         android:textSize="15dp"
@@ -23,8 +24,9 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
-        android:layout_width="412dp"
-        android:layout_height="646dp"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+
         android:background="@android:color/darker_gray"
         android:padding="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
