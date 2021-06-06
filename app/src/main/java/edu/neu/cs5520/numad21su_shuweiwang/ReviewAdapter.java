@@ -1,8 +1,13 @@
 package edu.neu.cs5520.numad21su_shuweiwang;
 
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.URLUtil;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,6 +17,7 @@ import java.util.ArrayList;
 public class ReviewAdapter extends RecyclerView.Adapter<ReviewHolder> {
     private final ArrayList<ItemCard> itemList;
     private ItemClickListener listener;
+    private Context context;
 
     @Override
     public ReviewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -20,8 +26,9 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewHolder> {
     }
 
     //Constructor
-    public ReviewAdapter(ArrayList<ItemCard> itemList) {
+    public ReviewAdapter(ArrayList<ItemCard> itemList, Context context) {
         this.itemList = itemList;
+        this.context = context;
     }
 
     public void setOnItemClickListener(ItemClickListener listener) {
@@ -31,6 +38,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewHolder> {
 
     @Override
     public void onBindViewHolder(ReviewHolder holder, int position) {
+        // activity onCreate()后就马上调用了onBindViewHolder()，因为一打开页面，点击item就可以马上更新数据
         // 更新当前viewHolder
         // LayoutManager请求某个位置的item，便去ViewHolder的两个地方找。
         //  在Cache,就啥都不用调动，直接return.
@@ -40,7 +48,21 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewHolder> {
 
         holder.itemName.setText(currentItem.getName());
         holder.itemURL.setText(currentItem.getURL());
-
+        // 点击item之后，我们需要更新
+        holder.itemURL.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final String address = currentItem.getURL();
+                // if URL is valid, go to the website. Otherwise, notify user.
+                if (URLUtil.isValidUrl(address)) {
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(address));
+                    context.startActivity(browserIntent);
+                } else {
+                    Toast.makeText(context, "Invalid URL, please tap the item to re-enter.", Toast.LENGTH_SHORT)
+                            .show();
+                }
+            }
+        });
     }
 
     @Override

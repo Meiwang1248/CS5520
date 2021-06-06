@@ -27,7 +27,7 @@ public class Dialog extends AppCompatDialogFragment {
         editTextURL = view.findViewById(R.id.editPassword);
 
         builder.setView(view)
-                .setTitle("Add a Website")
+                .setTitle("Add or Edit")
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {

@@ -29,6 +29,8 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
             android:id="@+id/URL"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textStyle=""
             android:text="@string/URL" />
 
     </RelativeLayout>

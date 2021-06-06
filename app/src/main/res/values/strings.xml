@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">NUMAD21Su-ShuweiWang</string>
     <string name="about_string">About</string>
-    <string name="links">Link Collectors</string>
+    <string name="links">Link Collector</string>
     <string name="info_string">Name: Shuwei Wang\nEmail: wang.shuw@northeastern.edu
     </string>
     <string name="A_string">A</string>
@@ -12,6 +12,7 @@
     <string name="F_string">F</string>
     <string name="Press">Pressed: </string>
     <string name ="item_name">Website Name</string>
-    <string name ="URL">URL</string>
+    <string name ="URL">URL starting with https://</string>
+    <string name ="tips">Tap URL to go to the website or item to edit the information</string>
 
 </resources>
