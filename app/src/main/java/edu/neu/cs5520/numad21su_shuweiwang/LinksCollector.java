@@ -51,16 +51,6 @@ public class LinksCollector extends AppCompatActivity implements Dialog.DialogLi
             }
         });
 
-        // Handling Orientation
-        if (savedInstanceState != null) {
-            for (int i = 0; i < itemList.size(); i++) {
-                String webName = savedInstanceState.getString(KEY_OF_INSTANCE + i + "0");
-                String URL =  savedInstanceState.getString(KEY_OF_INSTANCE + i + "1");
-            }
-            tips = savedInstanceState.getString("text");
-
-        }
-
 
 
 
@@ -149,7 +139,10 @@ public class LinksCollector extends AppCompatActivity implements Dialog.DialogLi
                 for (int i = 0; i < size; i++) {
                     String name = savedInstanceState.getString(KEY_OF_INSTANCE + i + "0");
                     String URL = savedInstanceState.getString(KEY_OF_INSTANCE + i + "1");
+                    itemList.add(new ItemCard(name, URL));
                 }
+
+
             }
         }
 //        else {
@@ -167,7 +160,6 @@ public class LinksCollector extends AppCompatActivity implements Dialog.DialogLi
         } else {
             addItem(webName, URL);
         }
-
     }
 
     private void editItem(String webName, String url) {
