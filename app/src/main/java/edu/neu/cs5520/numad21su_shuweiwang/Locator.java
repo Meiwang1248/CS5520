@@ -29,7 +29,14 @@ public class Locator extends AppCompatActivity implements LocationListener {
 
         text = (TextView) findViewById(R.id.location);
         button = (Button) findViewById(R.id.locationButton);
+
+        if(savedInstanceState != null) {
+            String location = savedInstanceState.getString("location");
+            text.setText(location);
+        }
+
         // runtime permission. If users grants
+        // 先check Permission，如果不等于granted，那就request Permision
         if (ContextCompat.checkSelfPermission(Locator.this, Manifest.permission.ACCESS_FINE_LOCATION)
         != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(Locator.this, new String[]{
@@ -43,6 +50,12 @@ public class Locator extends AppCompatActivity implements LocationListener {
                 getLocation();
             }
         });
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("location", text.getText().toString());
     }
 
     @SuppressLint("MissingPermission")
@@ -59,7 +72,7 @@ public class Locator extends AppCompatActivity implements LocationListener {
 
     @Override
     public void onLocationChanged(@NonNull Location location) {
-        text.setText("Latitude: " + location.getLatitude() +"/nLongitude: " + location.getLongitude());
+        text.setText("Latitude: " + location.getLatitude() +"\nLongitude: " + location.getLongitude());
     }
 
     @Override

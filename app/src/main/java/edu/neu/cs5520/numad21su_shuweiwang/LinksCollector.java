@@ -85,16 +85,13 @@ public class LinksCollector extends AppCompatActivity implements Dialog.DialogLi
 
         int size = itemList == null ? 0 : itemList.size();
         outState.putInt(NUMBER_OF_ITEMS, size);
-
         // Need to generate unique key for each item
-
         for (int i = 0; i < size; i++) {
             // put name information into instance
             outState.putString(KEY_OF_INSTANCE + i + "0", itemList.get(i).getName());
             // put URL into instance
             outState.putString(KEY_OF_INSTANCE + i + "1", itemList.get(i).getURL());
         }
-
         outState.putString("text", tips);
         super.onSaveInstanceState(outState);
 
@@ -142,8 +139,6 @@ public class LinksCollector extends AppCompatActivity implements Dialog.DialogLi
                     String URL = savedInstanceState.getString(KEY_OF_INSTANCE + i + "1");
                     itemList.add(new ItemCard(name, URL));
                 }
-
-
             }
         }
 //        else {
