@@ -14,12 +14,14 @@ public class MainActivity extends AppCompatActivity {
 
     private Button button;
     private Button buttonLink;
+    private Button buttonLocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         button = (Button) findViewById(R.id.launcher2);
+        buttonLocation = (Button) findViewById(R.id.buttonLocation);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -32,6 +34,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 openLinkCollector();
+            }
+        });
+
+        buttonLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openLocator();
             }
         });
     }
@@ -48,11 +57,17 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    private void openLocator() {
+        Intent intent = new Intent(this,Locator.class);
+        startActivity(intent);
+    }
+
     // Assignment 1
     public void introduceMyself(View view) {
         TextView textView = findViewById(R.id.myInfo);
         textView.setVisibility(View.VISIBLE);
     }
+
 
 
 

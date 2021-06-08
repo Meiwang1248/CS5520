@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="edu.neu.cs5520.numad21su_shuweiwang">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher_sw"
@@ -9,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_sw_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.NUMAD21SuShuweiWang">
-        <activity android:name=".LinksCollector"></activity>
+        <activity android:name=".Locator"></activity>
+        <activity android:name=".LinksCollector" />
         <activity android:name=".Activity2" />
         <activity android:name=".MainActivity">
             <intent-filter>
