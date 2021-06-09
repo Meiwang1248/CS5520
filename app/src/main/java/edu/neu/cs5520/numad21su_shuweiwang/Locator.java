@@ -35,21 +35,24 @@ public class Locator extends AppCompatActivity implements LocationListener {
             text.setText(location);
         }
 
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                checkPermit();
+                getLocation();
+            }
+        });
+    }
+
+    private void checkPermit() {
         // runtime permission. If users grants
-        // 先check Permission，如果不等于granted，那就request Permision
+        // 先check Permission，如果不等于granted，那就request Permission
         if (ContextCompat.checkSelfPermission(Locator.this, Manifest.permission.ACCESS_FINE_LOCATION)
-        != PackageManager.PERMISSION_GRANTED) {
+                != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(Locator.this, new String[]{
                     Manifest.permission.ACCESS_FINE_LOCATION
             }, 100);
         }
-
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getLocation();
-            }
-        });
     }
 
     @Override
@@ -67,19 +70,21 @@ public class Locator extends AppCompatActivity implements LocationListener {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
+     //Called when the location has changed
     @Override
     public void onLocationChanged(@NonNull Location location) {
         text.setText("Latitude: " + location.getLatitude() +"\nLongitude: " + location.getLongitude());
     }
 
+    // Called when a provider this listener is registered with becomes enabled.
     @Override
     public void onProviderEnabled(@NonNull String provider) {
 
     }
 
+    // Called when a provider this listener is registered with becomes disabled.
     @Override
     public void onProviderDisabled(@NonNull String provider) {
 

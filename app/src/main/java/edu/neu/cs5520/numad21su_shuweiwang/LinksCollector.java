@@ -53,8 +53,6 @@ public class LinksCollector extends AppCompatActivity implements Dialog.DialogLi
         });
 
 
-
-
         // Swipe left to remove
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
