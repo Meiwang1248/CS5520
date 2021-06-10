@@ -51,7 +51,7 @@ public class Locator extends AppCompatActivity implements LocationListener {
                 != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(Locator.this, new String[]{
                     Manifest.permission.ACCESS_FINE_LOCATION
-            }, 100);
+            }, 1);
         }
     }
 
@@ -78,13 +78,12 @@ public class Locator extends AppCompatActivity implements LocationListener {
         text.setText("Latitude: " + location.getLatitude() +"\nLongitude: " + location.getLongitude());
     }
 
-    // Called when a provider this listener is registered with becomes enabled.
     @Override
     public void onProviderEnabled(@NonNull String provider) {
 
     }
 
-    // Called when a provider this listener is registered with becomes disabled.
+
     @Override
     public void onProviderDisabled(@NonNull String provider) {
 
