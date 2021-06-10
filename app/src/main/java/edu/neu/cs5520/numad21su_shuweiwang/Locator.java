@@ -44,6 +44,13 @@ public class Locator extends AppCompatActivity implements LocationListener {
         });
     }
 
+    // Handling Orientation
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("location", text.getText().toString());
+    }
+
     private void checkPermit() {
         // runtime permission. If users grants
         // 先check Permission，如果不等于granted，那就request Permission
@@ -55,15 +62,9 @@ public class Locator extends AppCompatActivity implements LocationListener {
         }
     }
 
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putString("location", text.getText().toString());
-    }
-
     @SuppressLint("MissingPermission")
     private void getLocation() {
-        //这里的try catch是什么意思
+        // We use GPS to get the location
         try {
             locationManager = (LocationManager) getApplicationContext().getSystemService(LOCATION_SERVICE);
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 5, Locator.this);
@@ -72,7 +73,7 @@ public class Locator extends AppCompatActivity implements LocationListener {
         }
     }
 
-     //Called when the location has changed
+
     @Override
     public void onLocationChanged(@NonNull Location location) {
         text.setText("Latitude: " + location.getLatitude() +"\nLongitude: " + location.getLongitude());
