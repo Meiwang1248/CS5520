@@ -15,6 +15,8 @@ public class MainActivity extends AppCompatActivity {
     private Button button;
     private Button buttonLink;
     private Button buttonLocation;
+    private Button webButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         button = (Button) findViewById(R.id.launcher2);
         buttonLocation = (Button) findViewById(R.id.buttonLocation);
+        webButton = (Button) findViewById(R.id.webService);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -43,6 +46,18 @@ public class MainActivity extends AppCompatActivity {
                 openLocator();
             }
         });
+
+        webButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openWebService();
+            }
+        });
+    }
+
+    private void openWebService() {
+        Intent intent = new Intent(this, WebService.class);
+        startActivity(intent);
     }
 
     // Assignment 3

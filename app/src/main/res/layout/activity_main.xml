@@ -13,12 +13,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello World!"
+        android:layout_marginTop="20dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:textColor="#009688"
-        app:layout_constraintBottom_toTopOf="@id/aboutButton"
+        app:layout_constraintBottom_toTopOf="@id/buttonLocation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/launcher2"
+        app:layout_constraintTop_toBottomOf="@id/webService"
         app:layout_constraintVertical_bias="0.432" />
 
     <Button
@@ -32,7 +33,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewHelloWorld"
+        app:layout_constraintTop_toBottomOf="@+id/buttonLocation"
 
         app:layout_constraintVertical_bias="0.0" />
 
@@ -46,20 +47,19 @@
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@id/aboutButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.428"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.402" />
+        app:layout_constraintVertical_bias="0.823" />
 
     <Button
         android:id="@+id/launcher2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="0dp"
+        android:layout_marginTop="10dp"
         android:text="Activity 2 launcher"
-        app:layout_constraintBottom_toTopOf="@+id/textViewHelloWorld"
+        app:layout_constraintBottom_toTopOf="@+id/webService"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/links"
@@ -70,6 +70,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/links"
+        android:layout_marginTop="10dp"
         app:layout_constraintBottom_toTopOf="@id/launcher2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -81,11 +82,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/getLocation"
+        android:layout_marginTop="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/aboutButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="489dp"
-        app:layout_constraintBottom_toTopOf="@+id/aboutButton"
-        app:layout_constraintTop_toBottomOf="@+id/textViewHelloWorld"/>
+        app:layout_constraintTop_toBottomOf="@+id/textViewHelloWorld"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/webService"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/web"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/launcher2"
+        android:layout_marginTop="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/textViewHelloWorld"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -17,5 +17,8 @@
     <string name="location">Your location</string>
     <string name="locator">Get Current Location</string>
     <string name="getLocation">Locator</string>
+    <string name="web">Web Service</string>
+    <string name="loader">Load Website</string>
+    <string name="country">Enter a Country</string>
 
 </resources>

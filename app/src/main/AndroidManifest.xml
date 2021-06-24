@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_sw_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.NUMAD21SuShuweiWang">
-        <activity android:name=".Locator"></activity>
+        <activity android:name=".WebService"></activity>
+        <activity android:name=".Locator" />
         <activity android:name=".LinksCollector" />
         <activity android:name=".Activity2" />
         <activity android:name=".MainActivity">
