@@ -1,30 +1,30 @@
 package edu.neu.cs5520.numad21su_shuweiwang;
 
 public class ListItem {
-    private String category;
-    private String details;
+    private String country;
+    private String capital;
 
     public ListItem() {
     }
 
     public ListItem(String cat, String detail) {
-        this.category = cat;
-        this.details = detail;
+        this.country = cat;
+        this.capital = detail;
     }
 
-    public String getCategory() {
-        return category;
+    public String getCountry() {
+        return country;
     }
 
-    public String getDetails() {
-        return details;
+    public String getCapital() {
+        return capital;
     }
 
-    public void setCategory(String cat) {
-        this.category = cat;
+    public void setCountry(String cat) {
+        this.country = cat;
     }
 
-    public void setDetails(String details) {
-        this.details = details;
+    public void setCapital(String capital) {
+        this.capital = capital;
     }
 }

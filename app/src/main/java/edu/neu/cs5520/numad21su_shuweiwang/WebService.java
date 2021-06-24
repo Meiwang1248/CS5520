@@ -1,9 +1,7 @@
 package edu.neu.cs5520.numad21su_shuweiwang;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,7 +12,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -29,7 +26,6 @@ import java.net.ProtocolException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
 
 public class WebService extends AppCompatActivity {
@@ -69,8 +65,8 @@ public class WebService extends AppCompatActivity {
                 View v = super.getView(pos, convert, group);
                 TextView t1 = (TextView) v.findViewById(android.R.id.text1);
                 TextView t2 = (TextView) v.findViewById(android.R.id.text2);
-                t1.setText(getItem(pos).getCategory());
-                t2.setText(getItem(pos).getDetails());
+                t1.setText(getItem(pos).getCountry());
+                t2.setText(getItem(pos).getCapital());
 
                 return v;
             }
@@ -98,8 +94,8 @@ public class WebService extends AppCompatActivity {
         // generate unique key for each item
         for (int i = 0; i < size; i++) {
             // put country name into instance
-            outState.putString(KEY_OF_INSTANCE + i + "0", arrayList.get(i).getCategory());
-            outState.putString(KEY_OF_INSTANCE + i + "1", arrayList.get(i).getDetails());
+            outState.putString(KEY_OF_INSTANCE + i + "0", arrayList.get(i).getCountry());
+            outState.putString(KEY_OF_INSTANCE + i + "1", arrayList.get(i).getCapital());
         }
         super.onSaveInstanceState(outState);
 
