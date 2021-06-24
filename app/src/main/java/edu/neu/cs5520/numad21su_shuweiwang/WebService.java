@@ -40,6 +40,10 @@ public class WebService extends AppCompatActivity {
     private Button loader;
     private TextView progressText;
     private ProgressBar progressBar;
+    private ArrayList<ListItem> arrayList;
+
+    private static final String KEY_OF_INSTANCE = "KEY_OF_INSTANCE";
+    private static final String NUMBER_OF_ITEMS = "NUMBER_OF_ITEMS";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +59,7 @@ public class WebService extends AppCompatActivity {
         progressBar.setVisibility(View.INVISIBLE);
         progressText = (TextView) findViewById(R.id.textView2);
 
-        ArrayList<ListItem> arrayList = new ArrayList<ListItem>();
+        arrayList = new ArrayList<ListItem>();
         mainList.setAdapter(new ArrayAdapter<ListItem>(this, android.R.layout.simple_list_item_2,
                 android.R.id.text1,
                 arrayList) {
@@ -71,6 +75,7 @@ public class WebService extends AppCompatActivity {
                 return v;
             }
         });
+        initializeData(savedInstanceState);
 
         loader.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,6 +88,37 @@ public class WebService extends AppCompatActivity {
     public void callWebserviceButtonHandler(View view) {
         PingWebServiceTask task = new PingWebServiceTask();
         task.execute(mWebDestEditText.getText().toString());
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        int size = arrayList == null ? 0 : arrayList.size();
+        outState.putInt(NUMBER_OF_ITEMS, size);
+
+        // generate unique key for each item
+        for (int i = 0; i < size; i++) {
+            // put country name into instance
+            outState.putString(KEY_OF_INSTANCE + i + "0", arrayList.get(i).getCategory());
+            outState.putString(KEY_OF_INSTANCE + i + "1", arrayList.get(i).getDetails());
+        }
+        super.onSaveInstanceState(outState);
+
+    }
+
+    private void initializeData(Bundle savedInstanceState) {
+        // Not the first time to open this Activity
+        if (savedInstanceState != null && savedInstanceState.containsKey(NUMBER_OF_ITEMS)) {
+            if(arrayList == null || arrayList.size() == 0) {
+                int size = savedInstanceState.getInt(NUMBER_OF_ITEMS);
+
+                // Retrieve keys we stored in the instance
+                for (int i = 0; i < size; i++) {
+                    String country = savedInstanceState.getString(KEY_OF_INSTANCE + i + "0");
+                    String capital = savedInstanceState.getString(KEY_OF_INSTANCE + i + "1");
+                    arrayList.add(new ListItem(country, capital));
+                }
+            }
+        }
     }
 
 
@@ -118,7 +154,13 @@ public class WebService extends AppCompatActivity {
         @Override
         protected String doInBackground(String... strings) {
             Log.i(TAG, "Entered Country: " + strings[0]);
-
+            for (int i = 0; i < 10; i++) {
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
             try {
                 URL url = new URL("https://restcountries.eu/rest/v2/name/" + strings[0]);
 

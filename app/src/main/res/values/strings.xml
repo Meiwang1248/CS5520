@@ -18,7 +18,7 @@
     <string name="locator">Get Current Location</string>
     <string name="getLocation">Locator</string>
     <string name="web">Web Service</string>
-    <string name="loader">Load Website</string>
-    <string name="country">Enter a Country</string>
+    <string name="loader">Submit</string>
+    <string name="country">Search Countries and Its Capitals with a Word, e.g. United</string>
 
 </resources>
